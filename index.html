@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://unpkg.com/video.js/dist/video-js.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100%;
+    }
+
+    /* Styling for the main container */
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 640px;
+      margin: 20px auto;
+    }
+
+    /* Styling for the video player */
+    .video-player {
+      width: 100%;
+    }
+
+    /* Styling for the expandable drawer container */
+    .drawer-container {
+      display: none;
+      flex-direction: column;
+      width: calc(100% - 20px);
+      align-items: left;
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      padding: 10px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    /* Styling for the material icon */
+    .material-icons {
+      font-size: 24px;
+      color: #757575;
+      align-self: center;
+      position: relative;
+      z-index: 100;
+      cursor: pointer;
+      /* transform: translateY(-25px); */
+    }
+
+    /* Styling for the drawer content */
+    .drawer-content {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 10px;
+      justify-content: left;
+      align-items: start;
+      text-align: left;
+    }
+
+    .title-style {
+      font-size: 16px;
+      margin: 2px 0;
+      padding: 5px 0;
+      margin-bottom: 4px;
+      color: #333;
+    }
+
+    /* Styling for individual drawer links */
+    .drawer-content a {
+      text-decoration: none;
+      color: #333;
+      padding: 3px 0;
+      border-radius: 4px;
+      text-align: left;
+      transition: background-color 0.2s ease;
+    }
+
+    .drawer-content p {
+      padding: 2px 0;
+      margin: 2px 0;
+    }
+
+    .drawer-content a:hover {
+      background-color: #dbdbdb;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <video id="my-video" class="video-js vjs-default-skin video-player" controls preload="auto" width="640"
+      height="264">
+      <source src="sample-video.mp4" type="video/mp4">
+      <!-- If you are using HLS as the video source -->
+      <!-- <source src="your-video-source.m3u8" type="application/x-mpegURL"> -->
+    </video>
+    
+    <i id="drawer-icon" class="material-icons">keyboard_arrow_down</i>
+    <div id="my-drawer" class="drawer-container" style="display: none;">
+      <!-- <p id="drawer-icon" class="material-icons">Show More</p> -->
+      <div id="drawer-content" class="drawer-content" style="display: none;">
+        <p class="title-style"> <b>Creater: Name...</b></p>
+        <p class="title-style"> <b> Title: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus, facere!</b>
+        </p>
+        <p><b>Description:</b> </p>
+        <a href="#">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni, veniam? </a>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolores, aperiam. Lorem ipsum dolor sit, amet
+          consectetur adipisicing elit. Officia quia mollitia earum doloribus? Perferendis quam, nostrum quis harum
+          excepturi earum?</p>
+      </div>
+      <!-- <i id="drawer-icon" class="material-icons">keyboard_arrow_down</i> -->
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/video.js/dist/video.js"></script>
+  <script>
+    // Initialize the video player
+    const player = videojs('my-video');
+
+    // Get the drawer icon element
+    const drawerIcon = document.getElementById('drawer-icon');
+
+    // Get the drawer content element
+    const drawerContent = document.getElementById('drawer-content');
+    const drawerContainer = document.getElementById('my-drawer')
+
+    // Add event listener to toggle the drawer
+    drawerIcon.addEventListener('click', function () {
+      if (drawerContent.style.display === 'none') {
+        drawerContent.style.display = 'flex';
+        drawerContainer.style.display = 'flex';
+        drawerIcon.innerHTML = 'keyboard_arrow_up';
+        // drawerIcon.style.transform = 'translateY(25)'
+      } else {
+        drawerContent.style.display = 'none';
+        drawerContainer.style.display = 'none';
+        drawerIcon.innerHTML = 'keyboard_arrow_down';
+        // drawerIcon.style.transform = 'translateY(-25px)'
+
+      }
+    });
+  </script>
+</body>
+
+</html>
